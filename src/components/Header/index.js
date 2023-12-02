@@ -1,5 +1,4 @@
 import {Link, withRouter} from 'react-router-dom'
-
 import Cookies from 'js-cookie'
 
 import CartContext from '../../context/CartContext'
@@ -9,6 +8,7 @@ import './index.css'
 const Header = props => {
   const onClickLogout = () => {
     const {history} = props
+
     Cookies.remove('jwt_token')
     history.replace('/login')
   }
@@ -18,6 +18,7 @@ const Header = props => {
       {value => {
         const {cartList} = value
         const cartItemsCount = cartList.length
+
         return (
           <>
             {cartItemsCount > 0 ? (
@@ -41,12 +42,15 @@ const Header = props => {
             />
           </Link>
 
-          <button type="button" className="nav-mobile-btn">
+          <button
+            type="button"
+            className="nav-mobile-btn"
+            onClick={onClickLogout}
+          >
             <img
               src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-log-out-img.png"
               alt="nav logout"
-              className="nav-bar-image"
-              onClick={onClickLogout}
+              className="nav-bar-img"
             />
           </button>
         </div>
@@ -95,7 +99,7 @@ const Header = props => {
               <img
                 src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-home-icon.png"
                 alt="nav home"
-                className="nav-bar-image"
+                className="nav-bar-img"
               />
             </Link>
           </li>
@@ -105,7 +109,7 @@ const Header = props => {
               <img
                 src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-products-icon.png"
                 alt="nav products"
-                className="nav-bar-image"
+                className="nav-bar-img"
               />
             </Link>
           </li>
@@ -114,7 +118,7 @@ const Header = props => {
               <img
                 src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-cart-icon.png"
                 alt="nav cart"
-                className="nav-bar-image"
+                className="nav-bar-img"
               />
               {renderCartItemsCount()}
             </Link>
